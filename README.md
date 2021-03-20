@@ -62,9 +62,9 @@ to the page under your site's ``content/`` directory.
    ```
 5. Add the code (above) for using the tables to your source code.
 
-#### Using downloaded copy of the theme (e.g. Zip from Github)
+#### Using downloaded copy of the module (e.g. Zip from Github)
 
-1. Obtain a copy of the theme e.g. ([a theme Zip file from Github](https://github.com/danielfdickinson/hugoDebugTables/archive/master.zip))
+1. Obtain a copy of the module e.g. ([a theme Zip file from Github](https://github.com/danielfdickinson/hugoDebugTables/archive/master.zip))
 2. Copy/extract the files in the archive into the root of your site or theme (archives contain /layouts and subdirectories under it).
 3. Change back to the site directory
 

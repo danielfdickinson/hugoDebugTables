@@ -20,27 +20,56 @@ That means it will, by default, be added when using ``hugo server`` but not a re
 
 ### In Your Theme or Site Code
 
-#### As a Partial in Layouts
+#### Default Tables
+
+##### As a Partial in Layouts
 
 To use the full list of available debug tables as a partial in your layouts, simply add:
 
-```
+```go
 {{ partial "helpers/layouts/debug-tables/debug-tables-list" . }}
 ```
 
 in the layout(s) used for the page(s) on which want the tables to appear.
 
-#### A a Shortcode in Content Page
+##### As a Shortcode in Content Page
 
 To use the full list of available debug tables as a shortcode in your content pages, simply add:
 
-```
+```go
 {{< helpers/hugo-debug-tables >}}
 ```
 
 to the page under your site's ``content/`` directory.
 
 **NOTE:** This will only work if the content page in question actually gets rendered. (Many section layouts, for instance, do not render ``.Content`` and therefore this shortcode would not work with those layouts).
+
+#### With Additional Parameters
+
+Currently the only 'extra' parameter is 'expandPage'. If true many places
+where a pages appears in the debug table you will be able to view detailed
+Hugo variables for that page.
+
+##### As a partial
+
+```go
+{{- partial "helpers/debug-tables/debug-tables-list" (dict "Page" .Page "Site" .Site "expandPage" true -}}
+```
+
+##### As a shortcode
+
+```go
+{{< helpers/hugo-debug-tables true >}}
+```
+
+##### As usual but with Site Param
+
+In ``config.toml`` add
+
+```toml
+[params]
+     debugExpandPage = "true"
+```
 
 ### Adding the Code to Your Site
 

@@ -1,229 +1,243 @@
-{{ if eq hugo.Environment "development" }}
-<section aria-label="Hugo Debug Section">
-  <details>
-    <summary>Hugo Debug Table</summary>
-    <i>Idea and initial HTML source from <a href="https://raw.githubusercontent.com/zwbetz-gh/starter-hugo-debug-site/master/layouts/partials/debug-table.html">zwbetz-gh/starter-hugo-debug-site debug-table</a></i>
-    <ul>
-      <li>
-        <details>
-          <summary>Page</summary>
-          {{ partial "helpers/debug-tables/debug-page-table" . }}
-        </details>
-      </li>
-      <li>
-        <details>
-          <summary>Section</summary>
-          <table>
-            <tr>
-              <td>.CurrentSection</td>
-              <td>{{ .CurrentSection }}</td>
-            </tr>
-            <tr>
-              <td>.FirstSection</td>
-              <td>{{ .FirstSection }}</td>
-            </tr>
-            <tr>
-              <td>.Parent</td>
-              <td>{{ .Parent }}</td>
-            </tr>
-            <tr>
-              <td>.Section</td>
-              <td>{{ .Section }}</td>
-            </tr>
-            <tr>
-              <td>.Sections</td>
-              <td>
-                <details>
-                  <summary>{{ len .Sections }}</summary>
-                  {{ with .Sections }}
+{{- if eq hugo.Environment "development" -}}
+{{- $curPage := .Page -}}
+{{- $basePage := .Page -}}
+{{- $curSite := .Site -}}
+{{- $baseSite := .Site -}}
+{{- $expandPage := false -}}
+{{- if (.Param "debugExpandPage") -}}
+  {{- $expandPage = (.Param "debugExpandPage") -}}
+{{- end -}}
+{{- if reflect.IsMap . -}}
+  {{- if (index . "expandPage") -}}
+    {{- $expandPage = .expandPage -}}
+  {{- end -}}
+{{- end -}}
+{{- with $curPage -}}
+  <section aria-label="Hugo Debug Section">
+    <details>
+      <summary>Hugo Debug Table</summary>
+      <i>Idea and initial HTML source from <a href="https://raw.githubusercontent.com/zwbetz-gh/starter-hugo-debug-site/master/layouts/partials/debug-table.html">zwbetz-gh/starter-hugo-debug-site debug-table</a></i>
+      <ul>
+        <li>
+          <details>
+            <summary>Page</summary>
+            {{ partial "helpers/debug-tables/debug-page-table" (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) }}
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>Section</summary>
+            <table>
+              <tr>
+                <td>.CurrentSection</td>
+                <td>{{ if .CurrentSection }}{{ partial "helpers/debug-tables/return-page-details" (dict "Page" .CurrentSection "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage) }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.FirstSection</td>
+                <td>{{ if .FirstSection }}{{ partial "helpers/debug-tables/return-page-details" (dict "Page" .FirstSection "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage) }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.Parent</td>
+                <td>{{ if .Parent }}{{ partial "helpers/debug-tables/return-page-details" (dict "Page" .Parent "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false) }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.Section</td>
+                <td>{{ .Section }}</td>
+              </tr>
+              <tr>
+                <td>.Sections</td>
+                <td>
+                  <details>
+                    <summary>{{ len .Sections }}</summary>
+                    {{ with .Sections }}
+                      <ul>
+                        {{ range . }}
+                          <li>{{ if . }}{{ partial "helpers/debug-tables/return-page-details" (dict "Page" . "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false) }}{{ end }}</li>
+                        {{ end }}
+                      </ul>
+                    {{ end }}
+                  </details>
+                </td>
+              </tr>
+            </table>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>File</summary>
+            <table>
+              <tr>
+                <td>.File.BaseFileName</td>
+                <td>{{ with .File }}{{ .BaseFileName }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.File.ContentBaseName</td>
+                <td>{{ with .File }}{{ .ContentBaseName }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.File.Dir</td>
+                <td>{{ with .File }}{{ .Dir }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.File.Ext</td>
+                <td>{{ with .File }}{{ .Ext }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.File.Lang</td>
+                <td>{{ with .File }}{{ .Lang }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.File.LogicalName</td>
+                <td>{{ with .File }}{{ .LogicalName }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.File.Path</td>
+                <td>{{ with .File }}{{ .Path }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.File.TranslationBaseName</td>
+                <td>{{ with .File }}{{ .TranslationBaseName }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.File.UniqueID</td>
+                <td>{{ with .File }}{{ .UniqueID }}{{ end }}</td>
+              </tr>
+            </table>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>Taxonomies</summary>
+            <table>
+              <tr>
+                <td>.Data.Singular</td>
+                <td>{{ with .Data.Singular }}{{ . }}{{ end }}</td>
+              </tr>
+              <tr>
+                <td>.Data.Plural</td>
+                <td>{{ with .Data.Plural }}{{ . }}{{ end }}</td>
+              </tr>
+              {{ if not (or .IsSection .IsHome) }}
+              <tr>
+                <td>.Data.Pages</td>
+                <td>
+                  <details>
+                    <summary>{{ len .Data.Pages }}</summary>
+                    {{ with .Data.Pages }}
+                      {{ partial "helpers/debug-tables/debug-page-list" (dict "Pages" . "Page" $curPage "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage) }}
+                    {{ end }}
+                  </details>
+                </td>
+              </tr>
+              {{ end }}
+              <tr>
+                <td>.Data.Terms</td>
+                <td>
+                  <details>
+                    <summary>{{ if .Data.Terms }}{{ len .Data.Terms }}{{ else }}0{{ end }}</summary>
+                    {{ with .Data.Terms }}
                     <ul>
-                      {{ range . }}
-                        <li>{{ . }}</li>
+                      {{ range $key, $term := . }}
+                        <li>{{ $key }}: {{ len $term }} page(s)</li>
                       {{ end }}
                     </ul>
-                  {{ end }}
-                </details>
-              </td>
-            </tr>
-          </table>
-        </details>
-      </li>
-      <li>
-        <details>
-          <summary>File</summary>
-          <table>
-            <tr>
-              <td>.File.BaseFileName</td>
-              <td>{{ with .File }}{{ .BaseFileName }}{{ end }}</td>
-            </tr>
-            <tr>
-              <td>.File.ContentBaseName</td>
-              <td>{{ with .File }}{{ .ContentBaseName }}{{ end }}</td>
-            </tr>
-            <tr>
-              <td>.File.Dir</td>
-              <td>{{ with .File }}{{ .Dir }}{{ end }}</td>
-            </tr>
-            <tr>
-              <td>.File.Ext</td>
-              <td>{{ with .File }}{{ .Ext }}{{ end }}</td>
-            </tr>
-            <tr>
-              <td>.File.Lang</td>
-              <td>{{ with .File }}{{ .Lang }}{{ end }}</td>
-            </tr>
-            <tr>
-              <td>.File.LogicalName</td>
-              <td>{{ with .File }}{{ .LogicalName }}{{ end }}</td>
-            </tr>
-            <tr>
-              <td>.File.Path</td>
-              <td>{{ with .File }}{{ .Path }}{{ end }}</td>
-            </tr>
-            <tr>
-              <td>.File.TranslationBaseName</td>
-              <td>{{ with .File }}{{ .TranslationBaseName }}{{ end }}</td>
-            </tr>
-            <tr>
-              <td>.File.UniqueID</td>
-              <td>{{ with .File }}{{ .UniqueID }}{{ end }}</td>
-            </tr>
-          </table>
-        </details>
-      </li>
-      <li>
-        <details>
-          <summary>Taxonomies</summary>
-          <table>
-            <tr>
-              <td>.Data.Singular</td>
-              <td>{{ with .Data.Singular }}{{ . }}{{ end }}</td>
-            </tr>
-            <tr>
-              <td>.Data.Plural</td>
-              <td>{{ with .Data.Plural }}{{ . }}{{ end }}</td>
-            </tr>
-            <tr>
-              <td>.Data.Pages</td>
-              <td>
-                <details>
-                  <summary>{{ len .Data.Pages }}</summary>
-                  {{ with .Data.Pages }}
-                  <ul>
-                    {{ range . }}
-                      <li>{{ . }}</li>
                     {{ end }}
-                  </ul>
+                  </details>
+              </tr>
+              <tr>
+                <td>See Also</td>
+                <td>.Site.Taxonomies</td>
+              </tr>
+            </table>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>Site</summary>
+            {{ partial "helpers/debug-tables/debug-site-table" (dict "Site" site "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>Hugo</summary>
+            <table>
+              <tr>
+                <td>hugo.BuildDate</td>
+                <td>{{ hugo.BuildDate }}</td>
+              </tr>
+              <tr>
+                <td>hugo.CommitHash</td>
+                <td>{{ hugo.CommitHash }}</td>
+              </tr>
+              <tr>
+                <td>hugo.Environment</td>
+                <td>{{ hugo.Environment }}</td>
+              </tr>
+              <tr>
+                <td>hugo.Generator</td>
+                <td>{{ hugo.Generator }}</td>
+              </tr>
+              <tr>
+                <td>hugo.Version</td>
+                <td>{{ hugo.Version }}</td>
+              </tr>
+            </table>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary>os.Stat</summary>
+            <table>
+              <tr>
+                <td>.IsDir</td>
+                <td>
+                  {{ with.File }}
+                    {{ $path := print "content/" .Path }}
+                    {{ (os.Stat $path).IsDir }}
                   {{ end }}
-                </details>
-            </tr>
-            <tr>
-              <td>.Data.Terms</td>
-              <td>
-                <details>
-                  <summary>{{ if .Data.Terms }}{{ len .Data.Terms }}{{ else }}0{{ end }}</summary>
-                  {{ with .Data.Terms }}
-                  <ul>
-                    {{ range $key, $term := . }}
-                      <li>{{ $key }}: {{ len $term }} page(s)</li>
-                    {{ end }}
-                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>.Mode</td>
+                <td>
+                  {{ with.File }}
+                    {{ $path := print "content/" .Path }}
+                    {{ (os.Stat $path).Mode }}
                   {{ end }}
-                </details>
-            </tr>
-            <tr>
-              <td>See Also</td>
-              <td>.Site.Taxonomies</td>
-            </tr>
-          </table>
-        </details>
-      </li>
-      <li>
-        <details>
-          <summary>Site</summary>
-          {{ partial "helpers/debug-tables/debug-site-table" site }}
-        </details>
-      </li>
-      <li>
-        <details>
-          <summary>Hugo</summary>
-          <table>
-            <tr>
-              <td>hugo.BuildDate</td>
-              <td>{{ hugo.BuildDate }}</td>
-            </tr>
-            <tr>
-              <td>hugo.CommitHash</td>
-              <td>{{ hugo.CommitHash }}</td>
-            </tr>
-            <tr>
-              <td>hugo.Environment</td>
-              <td>{{ hugo.Environment }}</td>
-            </tr>
-            <tr>
-              <td>hugo.Generator</td>
-              <td>{{ hugo.Generator }}</td>
-            </tr>
-            <tr>
-              <td>hugo.Version</td>
-              <td>{{ hugo.Version }}</td>
-            </tr>
-          </table>
-        </details>
-      </li>
-      <li>
-        <details>
-          <summary>os.Stat</summary>
-          <table>
-            <tr>
-              <td>.IsDir</td>
-              <td>
-                {{ with.File }}
-                  {{ $path := print "content/" .Path }}
-                  {{ (os.Stat $path).IsDir }}
-                {{ end }}
-              </td>
-            </tr>
-            <tr>
-              <td>.Mode</td>
-              <td>
-                {{ with.File }}
-                  {{ $path := print "content/" .Path }}
-                  {{ (os.Stat $path).Mode }}
-                {{ end }}
-              </td>
-            </tr>
-            <tr>
-              <td>.ModTime</td>
-              <td>
-                {{ with.File }}
-                  {{ $path := print "content/" .Path }}
-                  {{ (os.Stat $path).ModTime }}
-                {{ end }}
-              </td>
-            </tr>
-            <tr>
-              <td>.Name</td>
-              <td>
-                {{ with.File }}
-                  {{ $path := print "content/" .Path }}
-                  {{ (os.Stat $path).Name }}
-                {{ end }}
-              </td>
-            </tr>
-            <tr>
-              <td>.Size</td>
-              <td>
-                {{ with.File }}
-                  {{ $path := print "content/" .Path }}
-                  {{ print (os.Stat $path).Size " bytes" }}
-                {{ end }}
-              </td>
-            </tr>
-          </table>
-        </details>
-      </li>
-    </ul>
-  </details>
-</section>
+                </td>
+              </tr>
+              <tr>
+                <td>.ModTime</td>
+                <td>
+                  {{ with.File }}
+                    {{ $path := print "content/" .Path }}
+                    {{ (os.Stat $path).ModTime }}
+                  {{ end }}
+                </td>
+              </tr>
+              <tr>
+                <td>.Name</td>
+                <td>
+                  {{ with.File }}
+                    {{ $path := print "content/" .Path }}
+                    {{ (os.Stat $path).Name }}
+                  {{ end }}
+                </td>
+              </tr>
+              <tr>
+                <td>.Size</td>
+                <td>
+                  {{ with.File }}
+                    {{ $path := print "content/" .Path }}
+                    {{ print (os.Stat $path).Size " bytes" }}
+                  {{ end }}
+                </td>
+              </tr>
+            </table>
+          </details>
+        </li>
+      </ul>
+    </details>
+  </section>
+  {{ end }}
 {{ end }}

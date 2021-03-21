@@ -1,1 +1,5 @@
-{{- partial "helpers/debug-tables/debug-tables-list" .Page -}}
+{{- if not (.Get 0) -}}
+    {{- partial "helpers/debug-tables/debug-tables-list" .Page -}}
+{{- else -}}
+    {{- partial "helpers/debug-tables/debug-tables-list" (dict "Page" .Page "Site" .Site "expandPage" (.Get 0)) -}}
+{{- end -}}

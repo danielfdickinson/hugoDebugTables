@@ -44,7 +44,7 @@
       <td>.Content</td>
       <td>
         <details>
-          <summary>{{ len .Content }} characters</summary>
+          <summary>{{ if .Content }}{{ len .Content }}{{ else }}0{{end}} characters</summary>
           {{ with .Content }}
             <code>
               {{ . | htmlEscape | htmlUnescape }}

@@ -4,7 +4,7 @@
 {{- $curSite := .Site -}}
 {{- $baseSite := .Site -}}
 {{- $expandPage := false -}}
-{{- if (.Param "debugExpandPage") -}}
+{{- if ($curPage.Param "debugExpandPage") -}}
   {{- $expandPage = (.Param "debugExpandPage") -}}
 {{- end -}}
 {{- if reflect.IsMap . -}}
@@ -12,56 +12,54 @@
     {{- $expandPage = .expandPage -}}
   {{- end -}}
 {{- end -}}
-{{- with $curPage -}}
-  <section aria-label="Hugo Debug Section">
-    <details>
-      <summary>Hugo Debug Table</summary>
-      <i>Idea and initial HTML source from <a href="https://raw.githubusercontent.com/zwbetz-gh/starter-hugo-debug-site/master/layouts/partials/debug-table.html">zwbetz-gh/starter-hugo-debug-site debug-table</a></i>
-      <ul>
-        <li>
-          <details>
-            <summary>Page</summary>
-            {{- partial "helpers/debug-tables/debug-page-table" (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) -}}
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>Section</summary>
-            {{- partial "helpers/debug-tables/debug-section-table"  (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) -}}
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>File</summary>
-            {{- partial "helpers/debug-tables/debug-file-table" (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) -}}
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>Taxonomies</summary>
-            {{ partial "helpers/debug-tables/debug-taxonomy-table" (dict "Site" site "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>Site</summary>
-            {{ partial "helpers/debug-tables/debug-site-table" (dict "Site" site "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>Hugo</summary>
-            {{ partial "helpers/debug-tables/debug-hugo-table" (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) }}
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>os.Stat</summary>
-            {{ partial "helpers/debug-tables/debug-os-stat-table" . }}
-          </details>
-        </li>
-      </ul>
-    </details>
-  </section>
-  {{ end }}
+<section aria-label="Hugo Debug Section">
+  <details>
+    <summary>Hugo Debug Table</summary>
+    <i>Idea and initial HTML source from <a href="https://raw.githubusercontent.com/zwbetz-gh/starter-hugo-debug-site/master/layouts/partials/debug-table.html">zwbetz-gh/starter-hugo-debug-site debug-table</a></i>
+    <ul>
+      <li>
+        <details>
+          <summary>Page</summary>
+          {{- partial "helpers/debug-tables/debug-page-table" (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) -}}
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Section</summary>
+          {{- partial "helpers/debug-tables/debug-section-table"  (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) -}}
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>File</summary>
+          {{- partial "helpers/debug-tables/debug-file-table" (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) -}}
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Taxonomies</summary>
+          {{ partial "helpers/debug-tables/debug-taxonomy-table" (dict "Site" site "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Site</summary>
+          {{ partial "helpers/debug-tables/debug-site-table" (dict "Site" site "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Hugo</summary>
+          {{ partial "helpers/debug-tables/debug-hugo-table" (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) }}
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>os.Stat</summary>
+          {{ partial "helpers/debug-tables/debug-os-stat-table" (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) }}
+        </details>
+      </li>
+    </ul>
+  </details>
+</section>
 {{ end }}

@@ -211,16 +211,7 @@
     <tr>
       <td>.Params</td>
       <td>
-        <details>
-          <summary>{{ len .Params }}</summary>
-          {{ with .Params }}
-          <ul>
-            {{ range $key, $value := . }}
-              <li>{{ $key }}: {{ $value }}</li>
-            {{ end }}
-          </ul>
-          {{ end }}
-        </details>
+        {{- partial "helpers/debug-tables/debug-table-expand-item" .Params -}}
       </td>
     </tr>
   </table>

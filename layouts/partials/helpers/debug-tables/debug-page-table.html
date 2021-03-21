@@ -338,5 +338,11 @@
       <td>.WordCount</td>
       <td>{{ .WordCount }}</td>
     </tr>
+    <tr>
+      <td>.Params</td>
+      <td>
+        {{- partial "helpers/debug-tables/debug-table-expand-item" .Params -}}
+      </td>
+    </tr>
   </table>
 {{ end }}

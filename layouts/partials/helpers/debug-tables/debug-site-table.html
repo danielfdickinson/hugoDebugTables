@@ -21,8 +21,8 @@
           <summary>{{ len .Author }} keys</summary>
           {{ with .Author }}
           <ul>
-            {{ range $key, $value := .Author }}
-              <li>$key: $value</li>
+            {{ range $key, $value := . }}
+              <li>{{ $key }}: {{ $value }}</li>
             {{ end }}
           </ul>
           {{ end }}

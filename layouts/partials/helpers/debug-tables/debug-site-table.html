@@ -24,18 +24,7 @@
     </tr>
     <tr>
       <td>.Author</td>
-      <td>
-        <details>
-          <summary>{{ len .Author }} keys</summary>
-          {{ with .Author }}
-          <ul>
-            {{ range $key, $value := . }}
-              <li>{{ $key }}: {{ $value }}</li>
-            {{ end }}
-          </ul>
-          {{ end }}
-        </details>
-      </td>
+      <td>{{ partial "helpers/debug-tables/debug-table-expand-item" .Author }}</td>
     </tr>
     <tr>
       <td>.BaseURL</td>

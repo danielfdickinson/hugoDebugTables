@@ -95,16 +95,7 @@
     </tr>
     <tr>
       <td>.Keywords</td>
-      <td><details>
-        <summary>{{ len .Keywords }}</summary>
-        {{ with .Keywords }}
-        <ul>
-          {{ range .Keywords }}
-          <li>{{ . }}</li>
-          {{ end }}
-        </ul>
-        {{ end }}
-      </details></td>
+      <td>{{ partial "helpers/debug-tables/debug-table-expand-item" .Keywords }}</td>
     </tr>
     <tr>
       <td>.Kind</td>

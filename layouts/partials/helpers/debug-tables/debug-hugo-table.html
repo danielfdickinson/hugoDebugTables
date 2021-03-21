@@ -1,3 +1,15 @@
+{{ $curPage := .Page }}
+{{ $curSite := .Site }}
+{{ $basePage := .basePage }}
+{{ $baseSite := .baseSite }}
+{{ $expandPage := .expandPage }}
+{{ if not $basePage }}
+  {{ $basePage = $curPage }}
+{{ end }}
+{{ if not $baseSite }}
+  {{ $baseSite = $curSite }}
+{{ end }}
+{{ with $curPage }}
 <table>
     <tr>
         <td>hugo.BuildDate</td>
@@ -20,3 +32,4 @@
         <td>{{ hugo.Version }}</td>
     </tr>
 </table>
+{{ end }}

@@ -33,7 +33,7 @@
         <li>
           <details>
             <summary>File</summary>
-            {{- partial "helpers/debug-tables/debug-file-table" $curPage -}}
+            {{- partial "helpers/debug-tables/debug-file-table" (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) -}}
           </details>
         </li>
         <li>
@@ -51,7 +51,7 @@
         <li>
           <details>
             <summary>Hugo</summary>
-            {{ partial "helpers/debug-tables/debug-hugo-table" . }}
+            {{ partial "helpers/debug-tables/debug-hugo-table" (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) }}
           </details>
         </li>
         <li>

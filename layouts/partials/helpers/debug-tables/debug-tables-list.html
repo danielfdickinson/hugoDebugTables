@@ -15,7 +15,6 @@
 <section aria-label="Hugo Debug Section">
   <details>
     <summary>Hugo Debug Table</summary>
-    <i>Idea and initial HTML source from <a href="https://raw.githubusercontent.com/zwbetz-gh/starter-hugo-debug-site/master/layouts/partials/debug-table.html">zwbetz-gh/starter-hugo-debug-site debug-table</a></i>
     <ul>
       <li>
         <details>
@@ -57,6 +56,13 @@
         <details>
           <summary>os.Stat</summary>
           {{ partial "helpers/debug-tables/debug-os-stat-table" (dict "Page" $curPage "basePage" $basePage "Site" $curSite  "baseSite" $baseSite "expandPage" $expandPage ) }}
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>Acknowledgements</summary>
+          <p><i>Idea for debug table and initial HTML source from <a href="https://raw.githubusercontent.com/zwbetz-gh/starter-hugo-debug-site/master/layouts/partials/debug-table.html">zwbetz-gh/starter-hugo-debug-site debug-table</a></i></p>
+          <p><i>Current version from <a href="https://github.com/danielfdickinson/hugoDebugTables">github.com/danielfdickinson/hugoDebugTables</a></i></p>
         </details>
       </li>
     </ul>

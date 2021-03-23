@@ -84,7 +84,7 @@ Each of the tables (page, section, file, site, taxonomy, hugo, os-stat) expects 
 
 So, for example to emit the site table, one would use:
 ```go
-{{ partial "helpers/debug-tables/debug-site-table" (dict "Site" site "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
+{{ partial "helpers/debug-tables/table/site" (dict "Site" site "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
 
 ```
 

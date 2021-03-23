@@ -13,15 +13,15 @@
 <table>
     <tr>
         <td>.CurrentSection</td>
-        <td>{{ if .CurrentSection }}{{ partial "helpers/debug-tables/return-page-details" (dict "Page" .CurrentSection "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage) }}{{ end }}</td>
+        <td>{{ if .CurrentSection }}{{ partial "helpers/debug-tables/debug-helpers/return-page-details" (dict "Page" .CurrentSection "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage) }}{{ end }}</td>
     </tr>
     <tr>
         <td>.FirstSection</td>
-        <td>{{ if .FirstSection }}{{ partial "helpers/debug-tables/return-page-details" (dict "Page" .FirstSection "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage) }}{{ end }}</td>
+        <td>{{ if .FirstSection }}{{ partial "helpers/debug-tables/debug-helpers/return-page-details" (dict "Page" .FirstSection "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage) }}{{ end }}</td>
     </tr>
     <tr>
         <td>.Parent</td>
-        <td>{{ if .Parent }}{{ partial "helpers/debug-tables/return-page-details" (dict "Page" .Parent "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false) }}{{ end }}</td>
+        <td>{{ if .Parent }}{{ partial "helpers/debug-tables/debug-helpers/return-page-details" (dict "Page" .Parent "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false) }}{{ end }}</td>
     </tr>
     <tr>
         <td>.Section</td>
@@ -35,7 +35,7 @@
             {{ with .Sections }}
             <ul>
                 {{ range . }}
-                <li>{{ if . }}{{ partial "helpers/debug-tables/return-page-details" (dict "Page" . "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false) }}{{ end }}</li>
+                <li>{{ if . }}{{ partial "helpers/debug-tables/debug-helpers/return-page-details" (dict "Page" . "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false) }}{{ end }}</li>
                 {{ end }}
             </ul>
             {{ end }}

@@ -228,7 +228,7 @@
         {{ if ne .Site $baseSite }}
           <details>
             <summary>{{ if .Site.Title }}{{ .Site.Title }}{{ else }}Untitled Site{{ end }}</summary>
-            {{ partial "helpers/debug-tables/debug-site-table" (dict "Site" .Site "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
+            {{ partial "helpers/debug-tables/tables/site" (dict "Site" .Site "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
           </details>
         {{ else }}
           <div><span>*&nbsp;{{ if .Site.Title }}{{ .Site.Title }}{{ else }}Untitled Site{{ end }}</span></div>
@@ -247,7 +247,7 @@
                   {{ if ne . $baseSite }}
                   <details>
                     <summary>{{ if .Title }}{{ .Title }}{{ else }}Untitled Site{{ end }}</summary>
-                    {{ partial "helpers/debug-tables/debug-site-table" (dict "Site" . "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
+                    {{ partial "helpers/debug-tables/tables/site" (dict "Site" . "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
                   </details>
                   {{ else }}
                     <div><span>*&nbsp;{{ if .Title }}{{ .Title }}{{ else }}Untitled Site{{ end }}</span></div>
@@ -265,7 +265,7 @@
         {{ if ne .Sites.First $baseSite }}
           <details>
             <summary>{{ if .Sites.First.Title }}{{ .Sites.First.Title }}{{ else }}Untitled Site{{ end }}</summary>
-            {{ partial "helpers/debug-tables/debug-site-table" (dict "Site" .Sites.First "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
+            {{ partial "helpers/debug-tables/tables/site" (dict "Site" .Sites.First "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
           </details>
         {{ else }}
           <div><span>*&nbsp;{{ if .Sites.First.Title }}{{ .Sites.First.Title }}{{ else }}Untitled Site{{ end }}</span></div>

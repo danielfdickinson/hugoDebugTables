@@ -4,7 +4,7 @@
         <summary>{{ len $curCtx }}</summary>
         <ul>
             {{- range $curCtx -}}
-                <li>{{- partial "helpers/debug-tables/debug-helpers/expand-var" (dict "value" .) }}</li>
+                <li>{{ partial "helpers/debug-tables/debug-helpers/expand-var" (dict "value" .) }}</li>
             {{- end -}}
         </ul>
     </details>

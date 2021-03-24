@@ -1,0 +1,9 @@
+{{- $content := . -}}
+<details class="detail-debug-hugo content-debug-hugo">
+    <summary>{{ if $content }}{{ len $content }}{{ else }}0{{end}} characters</summary>
+{{ with $content }}
+    <code>
+{{ . | htmlEscape | htmlUnescape }}
+    </code>
+{{ end }}
+</details>

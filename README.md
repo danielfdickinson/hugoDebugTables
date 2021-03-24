@@ -131,3 +131,14 @@ Note that for the shortcode only ``.RawContent``, not ``.Content``, ``.Plain``, 
    ```
    hugo server -b http://localhost:1313/
    ```
+### Test CSS Styling
+
+A test CSS file is available in ``static/css/hugo-debug-tables.css``. To use it place lines such as the following:
+
+```go
+{{ if eq hugo.Environment "development" -}}
+<link rel="stylesheet" href="/css/hugo-debug-tables.css" />
+{{- end }}
+```
+
+in the ``<head>`` section of your layout(s).

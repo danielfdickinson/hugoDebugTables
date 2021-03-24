@@ -10,12 +10,12 @@
   {{ $baseSite = $curSite }}
 {{ end }}
 {{ with $curSite }}
-<table>
-    <tr>
-      <td>.AllPages</td>
-      <td>
-        <details>
-          <summary>{{ len .AllPages }}</summary>
+<table class="table-debug-hugo debug-site">
+    <tr class="table-row-debug-hugo">
+      <th class="table-cell-debug-key-hugo">.AllPages</th>
+      <td class="table-cell-debug-hugo">
+        <details class="details-debug-hugo">
+          <summary class="summary-debug-hugo">{{ len .AllPages }}</summary>
           {{ with .AllPages }}
             {{ partial "helpers/debug-tables/debug-page-list" (dict "Pages" . "Page" $curPage "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage) }}
           {{ end }}
@@ -103,29 +103,7 @@
     </tr>
     <tr>
       <td>.Menus</td>
-      <td>
-        <details>
-          <summary>{{ len .Menus }}</summary>
-          {{ with .Menus }}
-          <ul>
-            {{ range $key, $value := . }}
-            <li>
-              <details>
-                <summary>{{ $key }}: {{ len $value }}</summary>
-                {{ with $value }}
-                <ul>
-                  {{ range . }}
-                  <li>{{ partial "helpers/debug-tables/tables/menus" . }}</li>
-                  {{ end }}
-                <ul>
-                {{ end }}
-              </details>
-            </li>
-            {{ end }}
-          </ul>
-          {{ end }}
-        </details>
-      </td>
+      <td>{{- partial "helpers/debug-tables/tables/menus" .Menus -}}</td>
     </tr>
     <tr>
       <td>.Pages</td>

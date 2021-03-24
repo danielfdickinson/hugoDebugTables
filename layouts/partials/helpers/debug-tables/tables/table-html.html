@@ -3,8 +3,8 @@
 <table class="table-debug-hugo">
     {{- range $key, $value := . }}
     <tr class="table-row-debug-hugo">
-        <th class="table-cell-head-debug-hugo" >{{- $key -}}</th>
-        <td class="table-cell-debug-hugo">{{- $value -}}</td>
+        <th class="table-cell-head-debug-hugo">{{- $key -}}</th>
+        <td class="table-cell-debug-hugo">{{ $value }}</td>
     </tr>
     {{- end }}
 </table>

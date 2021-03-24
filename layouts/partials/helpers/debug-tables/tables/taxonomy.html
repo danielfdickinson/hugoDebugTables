@@ -16,7 +16,7 @@
         {{- if not (or $curPage.IsSection $curPage.IsHome) -}}
             {{- $baseDataPages := partial "helpers/debug-tables/debug-page-list" (dict "Pages" . "Page" $curPage "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage) -}}
             {{- if gt (len .) 0 -}}
-                {{- $dataPages = (printf "\n            <details>\n                <summary>%d\n                </summary>%s\n            </details>" (len .) $baseDataPages ) | safeHTML -}}
+                {{- $dataPages = (printf "\n            <details class=\"details-debug-hugo\">\n                <summary class=\"summary-debug-hugo\">%d\n                </summary>%s\n            </details>" (len .) $baseDataPages ) | safeHTML -}}
             {{- else -}}
                 {{- $dataPages = "" -}}
             {{- end -}}

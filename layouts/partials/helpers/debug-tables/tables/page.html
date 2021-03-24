@@ -3,17 +3,11 @@
 {{- $basePage := .basePage -}}
 {{- $baseSite := .baseSite -}}
 {{- $expandPage := .expandPage -}}
-{{- if not $basePage -}}
-    {{- $basePage = $curPage -}}
-{{- end -}}
-{{- if not $baseSite -}}
-    {{- $baseSite = $curSite -}}
-{{- end -}}
 {{- with $curPage -}}
     {{- $tableVals := (dict
         ".AlternativeOutputFormats" (partial "helpers/debug-tables/debug-helpers/expand-item" .AlternativeOutputFormats)
         ".Aliases" (partial "helpers/debug-tables/debug-helpers/expand-item" .Aliases)
-        ".Content" (partial "helpers/debug-tables/debug-helpers/content-details" .Content)
+        ".Content"  (partial "helpers/debug-tables/debug-helpers/content-details" (dict "Content" .Content "pre" true))
         ".Date" ( .Date.Local)
         ".Description" (.Description | htmlEscape | htmlUnescape)
         ".Draft" .Draft
@@ -34,18 +28,18 @@
         ".NextInSection" (cond (ne .NextInSection nil) (partial "helpers/debug-tables/debug-helpers/return-page-details" (dict
             "Page" .NextInSection "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false)) (""))
         ".OutputFormats"  (partial "helpers/debug-tables/debug-helpers/expand-item" .OutputFormats)
-        ".Pages" (partial "helpers/debug-tables/debug-page-list" (dict
+        ".Pages" (partial "helpers/debug-tables/debug-helpers/return-pages-details" (dict
             "Pages" .Pages "Page" $curPage "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage))
         ".Permalink" .Permalink
-        ".Plain" (partial "helpers/debug-tables/debug-helpers/content-details" .Plain)
-        ".PlainWords" (partial "helpers/debug-tables/debug-helpers/expand-item" .PlainWords)
+        ".Plain" (partial "helpers/debug-tables/debug-helpers/content-details"  (dict "Content" .Plain "pre" false))
+        ".PlainWords" (partial "helpers/debug-tables/debug-helpers/expand-item" (.PlainWords | sort))
         ".Params" (partial "helpers/debug-tables/debug-helpers/expand-item" .Params)
         ".Prev" (cond (ne .Prev nil) (partial "helpers/debug-tables/debug-helpers/return-page-details" (dict
             "Page" .Prev "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false)) (""))
         ".PrevInSection" (cond (ne .PrevInSection nil) (partial "helpers/debug-tables/debug-helpers/return-page-details" (dict
             "Page" .PrevInSection "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false)) (""))
         ".PublishDate" .PublishDate.Local
-        ".RawContent"  (partial "helpers/debug-tables/debug-helpers/content-details" .RawContent)
+        ".RawContent"  (partial "helpers/debug-tables/debug-helpers/content-details"  (dict "Content" .RawContent "pre" true))
         ".ReadingTime" .ReadingTime
         ".Resources" (partial "helpers/debug-tables/debug-helpers/expand-item" .Resources)
         ".RelPermalink" .RelPermalink
@@ -55,8 +49,8 @@
             "Page" $curPage "basePage" $basePage "Site" $curSite "Sites" .Sites "baseSite" $baseSite "expandPage" $expandPage))
         ".Sites.First" (partial "helpers/debug-tables/debug-helpers/site-details" (dict
         "Page" $curPage "basePage" $basePage "Site" .Sites.First "baseSite" $baseSite "expandPage" $expandPage))
-        ".Summary" (partial "helpers/debug-tables/debug-helpers/content-details" .Summary)
-        ".TableOfContents" (partial "helpers/debug-tables/debug-helpers/content-details" .TableOfContents)
+        ".Summary" (partial "helpers/debug-tables/debug-helpers/content-details"  (dict "Content" .Summary "pre" false))
+        ".TableOfContents" (partial "helpers/debug-tables/debug-helpers/content-details"  (dict "Content" .TableOfContents "pre" true))
         ".Title" (.Title | htmlEscape | htmlUnescape)
         ".Translations" (partial "helpers/debug-tables/debug-page-list" (
             dict "Pages" .Translations "Page" $curPage "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage))

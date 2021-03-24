@@ -3,12 +3,6 @@
 {{- $basePage := .basePage -}}
 {{- $baseSite := .baseSite -}}
 {{- $expandPage := .expandPage -}}
-{{- if not $basePage -}}
-    {{- $basePage = $curPage -}}
-{{- end -}}
-{{- if not $baseSite -}}
-    {{- $baseSite = $curSite -}}
-{{- end -}}
 {{- with $curPage -}}
     {{- $tableVals := (dict
         ".CurrentSection" (partial "helpers/debug-tables/debug-helpers/return-page-details" (dict
@@ -18,8 +12,8 @@
         ".Parent" (partial "helpers/debug-tables/debug-helpers/return-page-details" (dict
             "Page" .Parent "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false))
         ".Section" .Section
-        ".Section" (partial "helpers/debug-tables/debug-page-list" (dict
-            "Pages" .Sections "Page" .Parent "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false))
+        ".Sections" (partial "helpers/debug-tables/debug-helpers/return-pages-details" (dict
+            "Pages" .Sections "Page" $curPage "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" false))
     ) -}}
 {{- partial "helpers/debug-tables/tables/table-html" $tableVals }}
 {{ end }}

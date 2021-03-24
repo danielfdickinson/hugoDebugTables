@@ -1,9 +1,16 @@
-{{- $content := . -}}
-<details class="detail-debug-hugo content-debug-hugo">
-    <summary>{{ if $content }}{{ len $content }}{{ else }}0{{end}} characters</summary>
-{{ with $content }}
-    <code>
-{{ . | htmlEscape | htmlUnescape }}
+{{- $content := .Content }}
+{{- $preformatted := .pre }}
+<details class="details-debug-hugo debug-content-hugo">
+    <summary class="summary-debug-hugo">{{ if $content }}{{ len $content }}{{ else }}0{{end}} characters</summary>
+{{- with $content -}}
+    <code class="code-debug-hugo">
+        {{- if $preformatted }}
+        <pre class="pre-debug-hugo">
+        {{- end }}
+        {{- . | htmlEscape | htmlUnescape -}}
+        {{- if $preformatted }}
+        </pre>
+        {{- end }}
     </code>
-{{ end }}
+{{- end }}
 </details>

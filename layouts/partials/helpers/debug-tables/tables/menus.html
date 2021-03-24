@@ -1,13 +1,16 @@
 {{- $menus := . -}}
-            <ul class="list-debug-hugo">
 {{- range $key, $value := $menus -}}
-                <details class="details-debug-hugo">
-                    <summary class="summary-debug-hugo">{{- printf "%s: %d" $key (len $value) -}}</summary>
+    <details class="details-debug-hugo">
+        <summary class="summary-debug-hugo">{{- printf "%s: %d" $key (len $value) -}}</summary>
     {{- if gt (len $value) 0 -}}
-        {{ range $value }}
+        <ul class="list-debug-hugo debug-menus-hugo">
+        {{- range $value }}
+            <details class="details-debug-hugo">
+            <summary>{{- .Identifier -}}</summary>
             {{- partial "helpers/debug-tables/tables/menu" . -}}
-        {{ end }}
+            </details>
+        {{- end }}
+        </ul>
     {{- end -}}
-                </details>
-{{ end }}
-            </ul>
+    </details>
+{{- end }}

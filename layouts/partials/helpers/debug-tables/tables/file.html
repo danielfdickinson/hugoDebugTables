@@ -3,12 +3,6 @@
 {{- $basePage := .basePage -}}
 {{- $baseSite := .baseSite -}}
 {{- $expandPage := .expandPage -}}
-{{- if not $basePage -}}
-    {{- $basePage = $curPage -}}
-{{- end -}}
-{{- if not $baseSite -}}
-    {{- $baseSite = $curSite -}}
-{{- end -}}
 {{- with $curPage -}}
     {{- $tableVals := (dict) -}}
     {{- with .File -}}

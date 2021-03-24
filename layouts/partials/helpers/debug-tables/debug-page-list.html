@@ -9,8 +9,8 @@
 {{ if not $baseSite }}
    {{ $baseSite = $curSite }}
 {{ end }}
-<ul>
+<ul class="list-debug-hugo debug-page">
     {{ range .Pages }}
-        <li>{{ partial "helpers/debug-tables/debug-helpers/return-page-details" (dict "Page" . "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage ) }}</li>
+        {{ partial "helpers/debug-tables/debug-helpers/return-page-details" (dict "Page" . "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage ) }}
     {{ end }}
 </ul>

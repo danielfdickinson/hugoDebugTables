@@ -50,6 +50,11 @@ Currently the only 'extra' parameter is 'expandPage'. If true many places
 where a pages appears in the debug table you will be able to view detailed
 Hugo variables for that page.
 
+##### WARNING: expandPage is SLOW!!!
+
+expandPage in a partial or site-wide means that for every page on the site, the entire site's metadata gets processed. This can **exponentially** increase your build times. Use sparingly and knowing you may need to cancel the build due to time or memory and cpu
+constraints.
+
 ##### As a partial
 
 ```go

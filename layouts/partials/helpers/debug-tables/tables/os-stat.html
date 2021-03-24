@@ -1,47 +1,55 @@
+{{- $curPage := .Page -}}
+{{- $basePage := .basePage -}}
+{{- $curSite := .Site -}}
+{{- $baseSite := .baseSite -}}
+{{- $expandPage := .expandPage -}}
+{{- if not $basePage -}}
+    {{- $basePage = $curPage -}}
+{{- end -}}
+{{- if not $baseSite -}}
+    {{- $baseSite = $curSite -}}
+{{- end -}}
+{{- with $curPage -}}
+    {{- with .File -}}
+        {{- $path := print "content/" .Path -}}
+        {{- $osStatPath := os.Stat $path -}}
+        {{- with $osStatPath -}}
 <table>
     <tr>
         <td>.IsDir</td>
         <td>
-        {{ with.File }}
-            {{ $path := print "content/" .Path }}
-            {{ (os.Stat $path).IsDir }}
-        {{ end }}
+            {{ .IsDir }}
         </td>
     </tr>
     <tr>
         <td>.Mode</td>
         <td>
-        {{ with.File }}
-            {{ $path := print "content/" .Path }}
-            {{ (os.Stat $path).Mode }}
-        {{ end }}
+            {{ .Mode }}
         </td>
     </tr>
     <tr>
         <td>.ModTime</td>
         <td>
-        {{ with.File }}
-            {{ $path := print "content/" .Path }}
-            {{ (os.Stat $path).ModTime }}
-        {{ end }}
+            {{ .ModTime }}
         </td>
     </tr>
     <tr>
         <td>.Name</td>
         <td>
-        {{ with.File }}
-            {{ $path := print "content/" .Path }}
-            {{ (os.Stat $path).Name }}
-        {{ end }}
+            {{ .Name }}
         </td>
     </tr>
     <tr>
         <td>.Size</td>
         <td>
-        {{ with.File }}
-            {{ $path := print "content/" .Path }}
-            {{ print (os.Stat $path).Size " bytes" }}
-        {{ end }}
+            {{ print .Size " bytes" }}
         </td>
     </tr>
 </table>
+        {{- else -}}
+            {{ partial "helpers/debug-tables/debug-helpers/empty-os-stat" . -}}
+        {{- end -}}
+    {{- else -}}
+        {{ partial "helpers/debug-tables/debug-helpers/empty-os-stat" . -}}
+    {{- end -}}
+{{- end -}}

@@ -169,9 +169,7 @@ And of course if you wanted you could add ``"development"`` and/or ``"production
 A test CSS file is available in ``static/css/hugo-debug-tables.css``. To use it place a line such as the following:
 
 ```go
-{{- if in (default (slice "development") (.Param "debugTableEnvironment")) hugo.Environment -}}
-<link rel="stylesheet" href="/css/hugo-debug-tables.css" />
-{{- end }}
+{{- partial "helpers/debug-tables/debug-head-snippet" . -}}
 ```
 
 in the ``<head>`` section of your layout(s).

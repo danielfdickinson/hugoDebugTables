@@ -5,23 +5,23 @@
     {{- if reflect.IsMap $value }}
         <details class="details-debug-hugo">
             <summary class="summary-debug-hugo">{{- $key }}: {{ len $value -}}</summary>
-            <ul class="list-debug-hugo">
+            <div class="list-debug-hugo">
                 {{- range $key2, $value2 := $value -}}
                     {{- partial "helpers/debug-tables/debug-helpers/expand-var" (dict "key" $key2 "value" $value2) }}
                 {{- end }}
-            </ul>
+            </div>
             </details>
     {{- else if reflect.IsSlice $value }}
         <details class="details-debug-hugo">
             <summary class="summary-debug-hugo">{{- $key }}: {{ len $value -}}</summary>
-                <ul class="list-debug-hugo">
+                <div class="list-debug-hugo">
                     {{- range $value -}}
                         {{- partial "helpers/debug-tables/debug-helpers/expand-item" . -}}
                     {{- end }}
-                </ul>
+                </div>
         </details>
     {{ else -}}
-            <li class="list-item-debug-hugo">{{ $key }}: {{ $value }}</li>
+            <div class="list-item-debug-hugo">{{ $key }}: {{ $value }}</div>
     {{- end -}}
 {{- else -}}
     {{- if reflect.IsSlice $value -}}
@@ -33,9 +33,9 @@
         </details>
     {{- else -}}
         {{- if $key }}
-            <li class="list-item-debug-hugo">{{ $key }}: {{ $value }}</li>
+            <div class="list-item-debug-hugo">{{ $key }}: {{ $value }}</div>
         {{- else }}
-            <li class="list-item-debug-hugo">{{ $value }}</li>
+            <div class="list-item-debug-hugo">{{ $value }}</div>
         {{- end -}}
     {{- end -}}
 {{- end -}}

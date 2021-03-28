@@ -3,8 +3,8 @@
 {{- $basePage := .basePage -}}
 {{- $baseSite := .baseSite -}}
 {{- $expandPage := .expandPage -}}
-<ul class="list-debug-hugo debug-pages-hugo">
+<div class="list-debug-hugo debug-pages-hugo">
     {{- range .Pages -}}
         {{- partial "helpers/debug-tables/debug-helpers/return-page-details" (dict "Page" . "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage ) -}}
     {{- end -}}
-</ul>
+</div>

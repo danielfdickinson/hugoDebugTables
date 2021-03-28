@@ -15,7 +15,7 @@
 <section class="section-debug-hugo debug-variables-hugo" aria-label="Hugo Debug Section">
     <details class="details-debug-hugo">
         <summary class="summary-debug-hugo">Hugo Debug Table</summary>
-        <ul class="list-debug-hugo debug-tables">
+        <div class="list-debug-hugo debug-tables">
 {{- $tablesToShow := (slice "page") -}}
 {{- $tablesToShow = $tablesToShow | append "section" -}}
 {{- $tablesToShow = $tablesToShow | append "file" -}}
@@ -40,7 +40,7 @@
                     <p class="list-item-debug-hugo"><i>Current version from <a href="https://github.com/danielfdickinson/hugoDebugTables">github.com/danielfdickinson/hugoDebugTables</a></i></p>
                 </div>
             </details>
-        </ul>
+        </div>
     </details>
 </section>
 {{ end }}

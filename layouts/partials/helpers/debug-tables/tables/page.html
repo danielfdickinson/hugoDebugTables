@@ -9,7 +9,7 @@
         ".Aliases" (partial "helpers/debug-tables/debug-helpers/expand-item" .Aliases)
         ".Content"  (partial "helpers/debug-tables/debug-helpers/content-details" (dict "Content" .Content "pre" true))
         ".Date" ( .Date.Local)
-        ".Description" (.Description | htmlEscape | htmlUnescape)
+        ".Description" (.Description | htmlEscape | safeHTML)
         ".Draft" .Draft
         ".ExpiryDate" .ExpiryDate.Local
         ".FuzzyWordCount" .FuzzyWordCount

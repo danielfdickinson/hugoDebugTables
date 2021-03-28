@@ -2,20 +2,20 @@
 {{- if reflect.IsSlice $curCtx }}
     <details class="details-debug-hugo">
         <summary class="summary-debug-hugo">{{- len $curCtx -}}</summary>
-        <ul class="list-debug-hugo">
+        <div class="list-debug-hugo">
             {{- range $curCtx }}
                 {{- partial "helpers/debug-tables/debug-helpers/expand-var" (dict "value" .) }}
             {{- end }}
-        </ul>
+        </div>
     </details>
 {{- else if reflect.IsMap $curCtx }}
     <details class="details-debug-hugo">
         <summary class="summary-debug-hugo">{{- len $curCtx -}}</summary>
-        <ul class="list-debug-hugo">
+        <div class="list-debug-hugo">
             {{- range $key, $value := $curCtx }}
                 {{- partial "helpers/debug-tables/debug-helpers/expand-var" (dict "key" $key "value" $value) }}
             {{- end }}
-        </ul>
+        </div>
     </details>
 {{- else -}}
     {{- partial "helpers/debug-tables/debug-helpers/expand-var" (dict "value" $curCtx) }}

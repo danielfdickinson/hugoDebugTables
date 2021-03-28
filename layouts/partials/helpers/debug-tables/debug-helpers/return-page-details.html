@@ -10,8 +10,8 @@
     {{- partial "helpers/debug-tables/tables/page" (dict "Page" . "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage) }}
     </details>
     {{- else }}
-    <li class="details-debug-hugo">
+    <div class="details-debug-hugo">
         <span class="summary-debug-hugo {{if eq . $basePage }}debug-current-hugo{{ end }}">{{ partial "helpers/debug-tables/debug-helpers/return-page-title" . -}}</span>
-    </li>
+    </div>
     {{- end }}
 {{- end }}

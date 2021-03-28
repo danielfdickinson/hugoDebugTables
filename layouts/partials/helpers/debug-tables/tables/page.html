@@ -9,7 +9,7 @@
         ".Aliases" (partial "helpers/debug-tables/debug-helpers/expand-item" .Aliases)
         ".Content"  (partial "helpers/debug-tables/debug-helpers/content-details" (dict "Content" .Content "pre" true))
         ".Date" ( .Date.Local)
-        ".Description" (.Description | htmlEscape | htmlUnescape)
+        ".Description" (.Description | htmlEscape | safeHTML)
         ".Draft" .Draft
         ".ExpiryDate" .ExpiryDate.Local
         ".FuzzyWordCount" .FuzzyWordCount
@@ -51,7 +51,7 @@
         "Page" $curPage "basePage" $basePage "Site" .Sites.First "baseSite" $baseSite "expandPage" $expandPage))
         ".Summary" (partial "helpers/debug-tables/debug-helpers/content-details"  (dict "Content" .Summary "pre" false))
         ".TableOfContents" (partial "helpers/debug-tables/debug-helpers/content-details"  (dict "Content" .TableOfContents "pre" true))
-        ".Title" (.Title | htmlEscape | htmlUnescape)
+        ".Title" (.Title | htmlEscape | safeHTML)
         ".Translations" (partial "helpers/debug-tables/debug-page-list" (
             dict "Pages" .Translations "Page" $curPage "basePage" $basePage "Site" $curSite "baseSite" $baseSite "expandPage" $expandPage))
         ".TranslationKey" .TranslationKey

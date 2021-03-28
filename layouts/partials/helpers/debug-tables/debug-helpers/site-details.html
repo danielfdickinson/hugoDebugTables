@@ -10,8 +10,8 @@
     {{ partial "helpers/debug-tables/tables/site" (dict "Site" .Site "baseSite" $baseSite "Page" $curPage "basePage" $basePage "expandPage" $expandPage) }}
 </details>
 {{ else }}
-<li class="details-debug-hugo debug-current-hugo">
+<div class="details-debug-hugo debug-current-hugo">
     <span class="summary-debug-hugo">{{ if .Site.Title }}{{ .Site.Title }}{{ else }}Untitled Site{{ end }}</span>
-</li>
+</div>
 {{ end }}
 {{- end -}}

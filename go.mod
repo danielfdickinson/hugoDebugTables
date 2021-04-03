@@ -1,3 +1,3 @@
-module github.com/danielfdickinson/hugoDebugTables
+module git.wildtechgarden.ca/danielfdickinson/hugoDebugTables
 
 go 1.14

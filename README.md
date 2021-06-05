@@ -101,23 +101,25 @@ Note that for the shortcode, only ``.RawContent`` renders, not ``.Content``, ``.
 
 ### Using Hugo Modules (preferred)
 
+**NB** Due to limitations of Hugo modules when it comes to repo locations this is a bit of a mess at the moment; it will be cleaned up sometime "Real Soon Now" for this repo, as moving and renaming has caused some grief.
+
 1. Initialize the Hugo module system: ``hugo mod init github.com/<your_user>/<your_project>`` (assuming you are using github, of course).
 2. Import hugDebugTables in your ``config.html``
    ```toml
    [module]
      [[module.imports]]
-        path = "git.wildtechgarden.ca/danielfdickinson/hugoDebugTables"
+        path = "gitea.wildtechgarden.ca/danielfdickinson/hugoDebugTables"
    ```
 3. Change back to the site directory
 4. Get the module
    ```
-   hugo mod get git.wildtechgarden.ca/danielfdickinson/hugoDebugTables
+   hugo mod get gitea.wildtechgarden.ca/danielfdickinson/hugoDebugTables
    ```
 5. Add the code (above) for using the tables to your source code.
 
 ### Using downloaded copy of the module (e.g. Zip from the Git repo)
 
-1. Obtain a copy of the module e.g. ([a module Zip file from the Git repo](https://git.wildtechgarden.ca/danielfdickinson/hugoDebugTables/archive/master.zip))
+1. Obtain a copy of the module e.g. ([a module Zip file from the Git repo](https://gitea.wildtechgarden.ca/danielfdickinson/hugoDebugTables/archive/master.zip))
 2. Copy/extract the files in the archive into the root of your site or theme (archives contain /layouts and subdirectories under it).
 3. Change back to the site directory
 
